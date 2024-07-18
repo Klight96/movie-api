@@ -9,6 +9,11 @@ const path = require('path');
 // Middleware to parse JSON bodies
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.send('homepage endpoint hit');
+});
+
+
 // Endpoint for app launch
 app.get('/auth/start', (req, res) => {
     res.send('App launch endpoint hit');
@@ -24,6 +29,8 @@ app.get('/auth/callback', (req, res) => {
         res.status(400).json({ error: 'No authorization code received' });
     }
 });
+
+
 
 // Endpoint for logout
 app.get('/logout', (req, res) => {
