@@ -1,0 +1,4 @@
+this is a simple text which we are going  to read in NODE JS
+
+ the content of this file will be appended to the content of input.txt and will be written in output.txt file. 
+Fri Jul 12 2024 12:56:40 GMT+0100 (West Africa Standard Time)
