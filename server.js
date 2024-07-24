@@ -2,26 +2,24 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-
-
-
-
 // Middleware to parse JSON bodies
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('homepage endpoint hit');
+    res.setHeader('Content-Type', 'application/json');
+    res.json({ message: 'homepage endpoint hit' });
 });
-
 
 // Endpoint for app launch
 app.get('/auth/start', (req, res) => {
-    res.send('App launch endpoint hit');
+    res.setHeader('Content-Type', 'application/json');
+    res.json({ message: 'App launch endpoint hit' });
 });
 
 // Endpoint for authentication callback
 app.get('/auth/callback', (req, res) => {
     const authCode = req.query.code;
+    res.setHeader('Content-Type', 'application/json');
     if (authCode) {
         // Handle the authorization code
         res.json({ message: 'Authorization code received', code: authCode });
@@ -30,22 +28,19 @@ app.get('/auth/callback', (req, res) => {
     }
 });
 
-
-
 // Endpoint for logout
 app.get('/logout', (req, res) => {
-    res.send('Logout endpoint hit');
+    res.setHeader('Content-Type', 'application/json');
+    res.json({ message: 'Logout endpoint hit' });
 });
 
-
-
-
+// Endpoint for JWKS file
 app.get('/jwks.json', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.sendFile(path.join(__dirname, 'jwks.json'));
+    res.setHeader('Content-Type', 'application/json');
+    res.sendFile(path.join(__dirname, 'jwks.json'));
 });
 
 const port = 8080;
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server running at http://localhost:${port}`);
 });
